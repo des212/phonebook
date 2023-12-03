@@ -13,9 +13,33 @@ mongoose.connect(url).then(result => {
 })
 
 const personSchema = new mongoose.Schema({
-    name: String,
-    number: String,
-})
+    name: {
+        type: String,
+        minlength: 3,
+        required: true
+    },
+    number: {
+        type: String,
+        minlength: 8,
+        validate: {
+            validator: function(v) {
+                if (/\d{2}-\d{7}/.test(v)){
+                    return true;
+                }
+                else if(/\d{3}-\d{6}/.test(v)){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            },
+            message: `Not a valid phone number! Syntax must start XX-X... OR XXX-X... `
+          },
+        required: true
+        }
+        
+    }
+)
 
 personSchema.set('toJSON', {
     transform: (document, returnedObject) => {
