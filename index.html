@@ -2,8 +2,29 @@
 <html>
   <head>
     <meta http-equiv="refresh" content="3; url='https://des212.github.io/phonebook/build/'" />
+	<style>
+	@keyframes example {
+	  0%   {rotate: 0deg}
+	  25%  {rotate: 90deg}
+	  50%  {rotate: 180deg}
+	  75%  {rotate: 270deg}
+	  100% {rotate: 360deg}
+	}
+	.react-logo{
+		animation: example 5s linear 0s infinite normal;
+		aspect-ratio: 1/1;
+		width: 50%;
+		max-width: 512px;
+	}
+	@media screen and (max-width: 700px) {
+		.react-logo{
+			width: 80%;
+		}
+	}
+	</style>
   </head>
   <body>
-    <p>Wait a second...</p>
+    <h2>Wait a second...</h2>
+	<img class="react-logo" alt="React loading..." src="./build/logo512.png"/>
   </body>
 </html>
