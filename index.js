@@ -22,7 +22,7 @@ const errorHandler = (error, request, response, next) => {
 	if (error.name === 'CastError') {
 		return response.status(400).send({ error: 'malformatted id' })
 	}
-	else if(error.name === 'ValidationError'){
+	else if (error.name === 'ValidationError') {
 		return response.status(400).json({ error: error.message })
 	}
 	next(error)
@@ -39,18 +39,18 @@ app.use(requestLogger)
 app.use(express.static('dist'))
 
 /*let persons = [
-    {
-        id: 1, name: "Arto Hellas", number: "040-123456"
-    },
-    {
-        id: 2, name: "Ada Lovelace", number: "39-44-5323523"
-    },
-    {
-        id: 3, name: "Dan Abramov", number: "12-43-234345"
-    },
-    {
-        id: 4, name: "Mary Poppendick", number: "39-23-6423122"
-    }
+	{
+		id: 1, name: "Arto Hellas", number: "040-123456"
+	},
+	{
+		id: 2, name: "Ada Lovelace", number: "39-44-5323523"
+	},
+	{
+		id: 3, name: "Dan Abramov", number: "12-43-234345"
+	},
+	{
+		id: 4, name: "Mary Poppendick", number: "39-23-6423122"
+	}
 ]*/
 
 app.get('/', (req, res) => {
@@ -76,16 +76,16 @@ app.post('/api/persons', (request, response, next) => {
 			error: 'name missing'
 		})
 	}
-	else if(!body.number) {
+	else if (!body.number) {
 		return response.status(400).json({
 			error: 'number missing'
 		})
 	}
 	/*else if(Person.find(person => person.name === body.name ? true : false)){
-        return response.status(400).json({
-            error: 'name must be unique'
-        })
-    }*/
+		return response.status(400).json({
+			error: 'name must be unique'
+		})
+	}*/
 	const person = new Person({
 		name: body.name,
 		number: body.number,
@@ -110,7 +110,7 @@ app.get('/api/persons/:id', (request, response, next) => {
 
 app.delete('/api/persons/:id', (request, response, next) => {
 	Person.findByIdAndDelete(request.params.id)
-		.then(result => {
+		.then(result => { // eslint-disable-line no-unused-vars
 			response.status(204).end()
 		})
 		.catch(error => next(error))
