@@ -12,7 +12,8 @@ describe('Phonebook e2e tests', function () {
 				response.body.find(({ name }) => name === 'Temporary Person') ? null : cy.request('POST', 'https://phonebook-jgkw.onrender.com/api/persons', person)
 			}
 		)
-		cy.visit('http://localhost:5173')
+		const PORT = process.env.PORT || 3001
+		cy.visit(`http://localhost:${PORT}`)
 	})
 	it('Front page can be opened', function () {
 		cy.contains('Phonebook')
