@@ -3,9 +3,15 @@ module.exports = {
 		'browser': true,
 		'commonjs': true,
 		'es2021': true,
-		'node': true
+		'node': true,
+		'vitest-globals/env': true,
+		'cypress/globals': true
 	},
-	'extends': 'eslint:recommended',
+	'extends': [
+		'eslint:recommended',
+		'plugin:vitest-globals/recommended',
+		'plugin:cypress/recommended'
+	],
 	'overrides': [
 		{
 			'env': {
@@ -22,6 +28,9 @@ module.exports = {
 	'parserOptions': {
 		'ecmaVersion': 'latest'
 	},
+	'plugins': [
+		'react', 'jest', 'cypress'
+	],
 	'rules': {
 		'eqeqeq': 'error',
 		'no-trailing-spaces': 'error',
