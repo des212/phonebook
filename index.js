@@ -125,6 +125,10 @@ app.put('/api/persons/:id', (request, response, next) => {
 		.catch(error => next(error))
 })
 
+app.get('/version', (req, res) => {
+  res.send('1') // change this string to ensure a new version deployed
+})
+
 app.get('/health', (req, res) => {
 	res.send('ok')
 })
@@ -132,7 +136,7 @@ app.get('/health', (req, res) => {
 app.use(unknownEndpoint)
 app.use(errorHandler)
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 3001
 app.listen(PORT, () => {
 	console.log(`Server running on port ${PORT}`)
 })
