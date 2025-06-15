@@ -38,11 +38,9 @@ describe('Phonebook persons component tests', () => {
 		expect(name).toHaveTextContent('Arto Hellas')
 	})
 	test('Clicking the delete calls event handler once', async () => {
-		screen.debug()
 		const user = userEvent.setup()
 		const button = container.querySelector('#delete-3')
 		await user.click(button)
-		console
 		expect(mockHandler.mock.calls).toHaveLength(1)
 	})
 })
