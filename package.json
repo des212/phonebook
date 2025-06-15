@@ -1,8 +1,7 @@
 {
   "name": "phonebook",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
+  "version": "1.0.0",
   "scripts": {
     "dev:ui": "vite",
     "build:ui": "vite build",
