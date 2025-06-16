@@ -33,7 +33,7 @@ jobs:
       - name: Trigger deployment
         if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
         run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
-        - name: Deployment success actor
+      - name: Deployment success actor
         uses: sarisia/actions-status-discord@v1
         if: ${{ success() && github.event_name != 'schedule' }}
         with:
