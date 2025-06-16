@@ -5,14 +5,14 @@ describe('Phonebook e2e tests', function () {
     	name: 'Temporary Person',
     	number: '040-00000000',
     }
-    //checks if Temporary Person exists and creates one if not
-		cy.request('GET', 'https://phonebook-jgkw.onrender.com/api/persons').then(
+		const PORT = process.env.PORT || 3001
+		//checks if Temporary Person exists and creates one if not
+		cy.request('GET', `http://localhost:${PORT}/api/persons`).then(
 			(response) => {
 				expect(response.status).to.eq(200)
-				response.body.find(({ name }) => name === 'Temporary Person') ? null : cy.request('POST', 'https://phonebook-jgkw.onrender.com/api/persons', person)
+				response.body.find(({ name }) => name === 'Temporary Person') ? null : cy.request('POST', `http://localhost:${PORT}/api/persons`, person)
 			}
 		)
-		const PORT = process.env.PORT || 3001
 		cy.visit(`http://localhost:${PORT}`)
 	})
 	it('Front page can be opened', function () {

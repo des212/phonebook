@@ -1,6 +1,8 @@
 import axios from 'axios'
-const baseUrl = 'https://phonebook-jgkw.onrender.com/api/persons'
-//const baseUrl = 'http://localhost:3001/api/persons'
+const env = await import.meta.env
+const PORT = env.PORT || 3001
+console.log(PORT)
+const baseUrl = `http://localhost:${PORT}/api/persons`
 
 const getAll = () => {
 	const request = axios.get(baseUrl)
