@@ -1,8 +1,5 @@
 import axios from 'axios'
-const env = await import.meta.env
-const PORT = env.PORT || 3001
-console.log(PORT)
-const baseUrl = `http://localhost:${PORT}/api/persons`
+const baseUrl = 'http://localhost:3001/api/persons'
 
 const getAll = () => {
 	const request = axios.get(baseUrl)
