@@ -5,6 +5,7 @@ describe('Phonebook e2e tests', function () {
     	name: 'Temporary Person',
     	number: '040-00000000',
     }
+	
     //checks if Temporary Person exists and creates one if not
 		cy.request('GET', 'https://phonebook-jgkw.onrender.com/api/persons').then(
 			(response) => {
