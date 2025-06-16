@@ -4,7 +4,7 @@ This is a demo project done for Fullstackopen course in Part 3 (https://fullstac
 
 ## Notes
 
-Frontend has been migrated from react-app to vite-app and eslint has been upgraded. Project includes simple frontend component and e2e tests + workflows. MongoDB database is still required for project though running project on localhost.
+Frontend has been migrated from react-app to vite-app and eslint has been upgraded. The project includes simple frontend component and e2e tests + workflows. MongoDB database is still required for the project though running the project on localhost.
 
 ## How to
 
