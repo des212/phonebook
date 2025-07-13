@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const url = process.env.MONGODB_URI || 'mongodb://the_username:the_password@localhost:3456/the_database'
+const url = process.env.MONGODB_URI
 
 mongoose.set('strictQuery', false)
 
