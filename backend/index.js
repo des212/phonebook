@@ -5,7 +5,7 @@ morgan.token('body', function getBody(req) {
 	return JSON.stringify(req.body)
 })
 const cors = require('cors')
-require('dotenv').config()
+require('dotenv').config({ path: '../.env' })
 const Person = require('./models/person')
 
 
