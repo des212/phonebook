@@ -1,5 +1,8 @@
 describe('Phonebook e2e tests', function () {
 	beforeEach(function () {
+		const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173'
+		const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:3001'
+
 		const person =
     {
     	name: 'Temporary Person',
@@ -7,14 +10,13 @@ describe('Phonebook e2e tests', function () {
     }
 
 		//checks if Temporary Person exists and creates one if not
-		cy.request('GET', 'https://phonebook-jgkw.onrender.com/api/persons').then(
+		cy.request('GET',`${BACKEND_URL}/api/persons`).then(
 			(response) => {
 				expect(response.status).to.eq(200)
-				response.body.find(({ name }) => name === 'Temporary Person') ? null : cy.request('POST', 'https://phonebook-jgkw.onrender.com/api/persons', person)
+				response.body.find(({ name }) => name === 'Temporary Person') ? null : cy.request('POST', `${BACKEND_URL}/api/persons`, person)
 			}
 		)
-		const PORT = process.env.PORT || 3001
-		cy.visit(`http://localhost:${PORT}`)
+		cy.visit(FRONTEND_URL)
 	})
 	it('Front page can be opened', function () {
 		cy.contains('Phonebook')

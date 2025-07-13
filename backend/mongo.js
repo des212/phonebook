@@ -8,8 +8,9 @@ if (process.argv.length < 3) {
 
 const password = process.argv[2]
 
-const url = `mongodb+srv://fullstack:${password}@cluster0.fkbtlmm.mongodb.net/personsApp?retryWrites=true&w=majority`
-//console.log('connecting to ', url)
+const uri = process.env.MONGODB_URI || 'mongodb://the_username:the_password@localhost:3456/the_database'
+const url = uri.replace(/\:{1}\w+\@{1}/, `:${password}@`) // eslint-disable-line no-useless-escape
+console.log('connecting to ', url)
 mongoose.set('strictQuery', false)
 mongoose.connect(url)
 
