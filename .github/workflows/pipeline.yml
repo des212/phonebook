@@ -31,9 +31,7 @@ jobs:
           start: |
             npm run dev
             npm run dev:ui
-          wait-on: |
-            http://localhost:3001
-            http://localhost:5173
+          wait-on: http://localhost:3001 && http://localhost:5173
       - name: Trigger deployment
         if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
         run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
