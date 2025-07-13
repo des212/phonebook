@@ -1,6 +1,6 @@
 describe('Phonebook e2e tests', function () {
 	beforeEach(function () {
-		const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost/frontend/dist'
+		const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173'
 		const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:3001'
 
 		const person =
