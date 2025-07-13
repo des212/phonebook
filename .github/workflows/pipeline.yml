@@ -28,7 +28,7 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           command: npm run test:e2e
-          start: npm run start & npm run preview:ui
+          start: npm run start & npm run preview:ui && fg
           wait-on: http://localhost:3001, http://localhost:4173
       - name: Trigger deployment
         if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
