@@ -30,8 +30,8 @@ jobs:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
         with:
           command: npm run test:e2e
-          start: npm run start & npm run preview:ui && fg
-          wait-on: http://localhost:4173
+          start: ./build_test_runner.sh
+          wait-on: http://localhost:3001, http://localhost:4173
       - name: Trigger deployment
         if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
         run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
