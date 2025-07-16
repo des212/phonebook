@@ -24,8 +24,8 @@ jobs:
         run: npm run lint
       - name: build
         run: npm run build:frontend
-      - name: test:frontend
-        run: npm run test
+      - name: test
+        run: npm run test:frontend
       - name: e2e tests
         uses: cypress-io/github-action@v5
         env:
