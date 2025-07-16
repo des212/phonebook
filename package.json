@@ -1,49 +1,22 @@
 {
   "name": "phonebook",
-  "private": true,
   "version": "1.0.0",
+  "description": "This package.json is only needed for purposes to support workflows pipeline.yml",
   "scripts": {
-    "dev:ui": "vite",
-    "build:ui": "vite build",
-    "preview:ui": "vite preview",
-    "lint": "eslint .",
-    "start": "node index.js",
-    "dev": "nodemon index.js",
-    "test": "vitest run",
-    "cypress:open": "cypress open",
-    "test:e2e": "cypress run"
+    "install": "npm --prefix ./frontend install && npm --prefix ./backend install",
+    "dev:frontend": "npm --prefix ./frontend run dev",
+    "build:frontend": "npm --prefix ./frontend run build",
+    "preview:frontend": "npm --prefix ./frontend run preview",
+    "lint": "npm --prefix ./frontend run lint && npm --prefix ./backend run lint",
+    "start:backend": "npm --prefix ./backend run start",
+    "dev:backend": "npm --prefix ./backend run dev",
+    "test:frontend": "npm --prefix ./frontend run test",
+    "cypress:open": "npm --prefix ./frontend run cypress:open",
+    "test:e2e": "npm --prefix ./frontend run test:e2e",
+    "start": "concurrently --kill-others \"npm run preview:frontend\" \"npm run start:backend\"",
+    "dev": "concurrently --kill-others \"npm run dev:frontend\" \"npm run dev:backend\""
   },
   "dependencies": {
-    "axios": "^1.9.0",
-    "cors": "^2.8.5",
-    "dotenv": "^16.5.0",
-    "express": "^5.1.0",
-    "mongoose": "^8.15.1",
-    "morgan": "^1.10.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
-  },
-  "devDependencies": {
-    "@eslint/js": "^9.25.0",
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.3.0",
-    "@testing-library/user-event": "^14.6.1",
-    "@types/react": "^19.1.2",
-    "@types/react-dom": "^19.1.2",
-    "@vitejs/plugin-react": "^4.4.1",
-    "cypress": "^14.4.1",
-    "eslint": "^9.25.0",
-    "eslint-plugin-cypress": "^5.1.0",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-react-refresh": "^0.4.19",
-    "eslint-plugin-vitest-globals": "^1.5.0",
-    "globals": "^16.0.0",
-    "jsdom": "^26.1.0",
-    "nodemon": "^3.1.10",
-    "vite": "^6.3.5",
-    "vitest": "^3.2.3"
-  },
-  "engines": {
-    "node": ">=22.16.0"
+    "concurrently": "^9.2.0"
   }
 }
