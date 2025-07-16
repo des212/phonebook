@@ -16,7 +16,9 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '22.16.0'
-      - name: npm run install
+      - name: install package.json dependencies
+        run: npm install  
+      - name: install sub package.jsons dependencies
         run: npm run install  
       - name: lint
         run: npm run lint
@@ -30,7 +32,7 @@ jobs:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
         with:
           command: npm run test:e2e
-          start: (npm run start&) && npm run preview:ui
+          start: npm run start
           wait-on: http://localhost:3001, http://localhost:4173
       - name: Trigger deployment
         if: ${{ github.event_name == 'push' && !contains(join(github.event.commits.*.message, ' '), '#skip') }}
