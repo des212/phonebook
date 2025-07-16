@@ -16,17 +16,17 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '22.16.0'
-      - name: install package.json dependencies
+      - name: Installing package dependencies
         run: npm install  
-      - name: install sub package.jsons dependencies
+      - name: Installing subpackage dependencies
         run: npm run install  
-      - name: lint
+      - name: Running lint
         run: npm run lint
-      - name: build
+      - name: Build frontend
         run: npm run build:frontend
-      - name: test
+      - name: Testing frontend
         run: npm run test:frontend
-      - name: e2e tests
+      - name: Running e2e tests
         uses: cypress-io/github-action@v5
         env:
           MONGODB_URI: ${{ secrets.MONGODB_URI }}
