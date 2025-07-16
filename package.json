@@ -13,9 +13,10 @@
     "test:frontend": "npm --prefix ./frontend run test",
     "cypress:open": "npm --prefix ./frontend run cypress:open",
     "test:e2e": "npm --prefix ./frontend run test:e2e",
-    "start": "concurrently --kill-others \"npm run preview:frontend\" \"npm run start:backend\""
+    "start": "concurrently --kill-others \"npm run preview:frontend\" \"npm run start:backend\"",
+    "dev": "concurrently --kill-others \"npm run dev:frontend\" \"npm run dev:backend\""
   },
-  "devDependencies": {
+  "dependencies": {
     "concurrently": "^9.2.0"
   }
 }
