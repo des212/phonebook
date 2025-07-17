@@ -11,5 +11,9 @@ export default defineConfig({
 		environment: 'jsdom',
 		globals: true,
 		setupFiles: './viteTestSetup.js',
+	},
+	build: {
+		outDir: '../dist',
+		emptyOutDir: true
 	}
 })
