@@ -4,13 +4,13 @@ describe('Phonebook e2e tests', function () {
 		const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:3001'
 
 		const person =
-    {
-    	name: 'Temporary Person',
-    	number: '040-00000000',
-    }
+		{
+			name: 'Temporary Person',
+			number: '040-00000000',
+		}
 
 		//checks if Temporary Person exists and creates one if not
-		cy.request('GET',`${BACKEND_URL}/api/persons`).then(
+		cy.request('GET', `${BACKEND_URL}/api/persons`).then(
 			(response) => {
 				expect(response.status).to.eq(200)
 				response.body.find(({ name }) => name === 'Temporary Person') ? null : cy.request('POST', `${BACKEND_URL}/api/persons`, person)
@@ -29,6 +29,11 @@ describe('Phonebook e2e tests', function () {
 	})
 	it('Temporary Person can be deleted', function () {
 		cy.get('.persons').find('li').contains('Temporary Person').parent('.person').contains('Delete').click()
-		cy.get('.persons').find('li').contains('Temporary Person').should('not.exist')
+		if (cy.get('.persons').find('li').length > 0) {
+			cy.get('.persons').find('li').contains('Temporary Person').should('not.exist')
+		}
+		else {
+			cy.get('.persons').find('li').should('have.length', 0)
+		}
 	})
 })
