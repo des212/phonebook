@@ -6,7 +6,7 @@ morgan.token('body', function getBody(req) {
 })
 const cors = require('cors')
 require('dotenv').config()
-const Person = require('./models/person')
+const Person = require('./mongo/models/person')
 
 
 const requestLogger = (request, response, next) => {
@@ -36,7 +36,10 @@ app.use(cors())
 app.use(express.json())
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
 app.use(requestLogger)
-app.use(express.static('../frontend/dist'))
+
+if (process.env.SERVE_FRONTEND_STATIC === 'TRUE' || process.env.SERVE_FRONTEND_STATIC === 'true') {
+	app.use(express.static('../frontend/dist'))
+}
 
 /*let persons = [
 	{

@@ -1,15 +1,15 @@
 const mongoose = require('mongoose')
-require('dotenv').config()
+require('dotenv').config({ path : '../.env' })
 
-if (process.argv.length < 3) {
-	console.log('give password as argument')
+if(process.argv.length < 3){
+	console.log('give password as argument or use plain MONGODB_URL env variable directly prompting "node mongo.js env"')
 	process.exit(1)
 }
 
 const password = process.argv[2]
 
-const uri = process.env.MONGODB_URI || 'mongodb://the_username:the_password@localhost:3456/the_database'
-const url = uri.replace(/\:{1}\w+\@{1}/, `:${password}@`) // eslint-disable-line no-useless-escape
+const uri = process.env.MONGODB_URL
+const url = process.argv[2] === 'env' ? uri : uri.replace(/\:{1}\w+\@{1}/, `:${password}@`) // eslint-disable-line no-useless-escape
 console.log('connecting to ', url)
 mongoose.set('strictQuery', false)
 mongoose.connect(url)
